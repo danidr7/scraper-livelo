@@ -13,7 +13,6 @@ import (
 func RunScraper() {
 	env := config.InitEnvs()
 
-	// Buscar lista com todos os partners na API da LIVELO
 	serviceConfig := service.NewServiceConfig(env.LiveloPartnersURL)
 	
 	partners, err := serviceConfig.GetPartners()
@@ -29,13 +28,15 @@ func RunScraper() {
 
 	mongoConfig := data.NewMongoConfig(env.MongoURL)
 
-	// Buscar partners na base de dados
 	savedPartners, err := mongoConfig.GetAllPartners(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	newPartners, err := checkNewPartners(savedPartners, partners)
+	if err != nil {
+		log.Fatalf("fails attempting check new partners: %s", err)
+	}
 
 	if len(newPartners) == 0 {
 		log.Println("No partners to add!")
@@ -44,18 +45,16 @@ func RunScraper() {
 
 	log.Printf("%d partners to add!", len(newPartners))
 
-	// Salvar novos partners
 	err = mongoConfig.SavePartners(ctx, partners)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 
-	// Iterar lista de todos os partners e consultar API da LIVELO pelo código do partner
-	// Consultar em chunks
-
-
-	// Salvar pontuação do dia
+	// TODO
+	// - Iterates over all partners and get offer information through the partner ID
+	// 		- The fetch can be done in chunks
+	// - save the points/score of all partners
 }
 
 func checkNewPartners(saved []model.PartnerTreated, toVerify []model.PartnerTreated) ([]model.PartnerTreated, error) {
