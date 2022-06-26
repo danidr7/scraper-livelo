@@ -1,0 +1,33 @@
+{
+    "partners": [
+        {
+            "id": "TEST",
+            "name": "TEST STORE",
+            "site": "points",
+            "link": "https://test-store/?partner=livelo",
+            "image": "/file/general/config_TEST_192x120-test.png",
+            "imageBanner": "/file/general/config_TEST_480x253-cp-test-mall.jpg",
+            "enableCarousel": false,
+            "enableRecaptcha": false,
+            "enableBenefits": false,
+            "enableModal": false,
+            "createdDate": "2021-04-29",
+            "partnerType": "COMPRE_E_PONTUE",
+            "categories": "todos moda",
+            "partnersPolicies": [
+                {
+                    "id": 280,
+                    "partnersConfigId": "TEST",
+                    "siteId": "points",
+                    "title": "Formas de acúmulo",
+                    "text": "O Participante é elegível a apenas uma forma de acúmulo (padrão ou especial).\n",
+                    "displayOrder": 6
+                }
+            ],
+            "enableMosaic": false,
+            "imageMosaic": null,
+            "partnerDetailsPage": null,
+            "displayOrderMosaic": 4
+        }
+    ]
+}
